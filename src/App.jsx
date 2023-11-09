@@ -1,7 +1,10 @@
+import { Navbar, Hero } from "./components";
+
 const App = () => {
   return (
     <>
-      <h1>CryptoTrackr</h1>
+      <Navbar />
+      <Hero />
     </>
   );
 };
