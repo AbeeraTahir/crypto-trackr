@@ -1,10 +1,10 @@
-import { Navbar, Hero } from "./components";
+import { Navbar, Home } from "./components";
 
 const App = () => {
   return (
     <>
       <Navbar />
-      <Hero />
+      <Home />
     </>
   );
 };
