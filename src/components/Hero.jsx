@@ -1,49 +1,7 @@
 import { motion } from "framer-motion";
-import millify from "millify";
 import bg from "../assets/images/bg.png";
-import { useGetGlobalDataQuery } from "../services/cryptoApi";
 
-const Home = () => {
-  const { data, isFetching } = useGetGlobalDataQuery();
-  const globalCryptoData = data?.data;
-
-  console.log(globalCryptoData);
-
-  const globalDataList = [
-    {
-      id: 1,
-      title: "Active Cryptocurrencies",
-      value: globalCryptoData?.active_cryptocurrencies,
-    },
-    {
-      id: 2,
-      title: "Ended ICOs",
-      value: globalCryptoData?.ended_icos,
-    },
-    {
-      id: 3,
-      title: "Ongoing ICOS",
-      value: globalCryptoData?.ongoing_icos,
-    },
-    {
-      id: 4,
-      title: "Upcoming ICOs",
-      value: globalCryptoData?.upcoming_icos,
-    },
-    {
-      id: 5,
-      title: "Total Markets",
-      value: globalCryptoData?.markets,
-    },
-    {
-      id: 6,
-      title: "24h Market Cap Change %",
-      value: globalCryptoData?.market_cap_change_percentage_24h_usd,
-    },
-  ];
-
-  if (isFetching) return "Loading...";
-
+const Hero = () => {
   return (
     <>
       <section className="h-screen pl-20 pr-8 w-full bg-[#041125] flex justify-center items-center text-white">
@@ -85,8 +43,8 @@ const Home = () => {
         </div>
         <motion.div
           variants={{
-            hidden: { opacity: 0, x: 10 },
-            visible: { opacity: 1, x: 0 },
+            hidden: { opacity: 0, y: 30 },
+            visible: { opacity: 1, y: 0 },
           }}
           initial="hidden"
           animate="visible"
@@ -95,21 +53,8 @@ const Home = () => {
           <img src={bg} alt="crypto image" width={550} />
         </motion.div>
       </section>
-      <section className="py-16 px-20 flex flex-col gap-6">
-        <h2 className="text-[2.5rem] text-[#ef2b55] font-[600]">
-          Global Crypto Data
-        </h2>
-        <div className="w-full flex flex-wrap">
-          {globalDataList.map(({ id, title, value }) => (
-            <div key={id} className="w-1/3 py-5 flex flex-col gap-3">
-              <p className="opacity-80">{title}</p>
-              <p className="text-[1.75rem] font-[6500]">{millify(value)}</p>
-            </div>
-          ))}
-        </div>
-      </section>
     </>
   );
 };
 
-export default Home;
+export default Hero;

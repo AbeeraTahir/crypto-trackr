@@ -1,4 +1,5 @@
 import Navbar from "./Navbar";
-import Home from "./Home";
+import Hero from "./Hero";
+import GlobalData from "./GlobalData";
 
-export { Navbar, Home }
+export { Navbar, Hero, GlobalData }
