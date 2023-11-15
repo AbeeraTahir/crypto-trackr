@@ -1,5 +1,5 @@
 import Navbar from "./Navbar";
 import Hero from "./Hero";
-import GlobalData from "./GlobalData";
+import CryptocurrencyList from "./CryptocurrencyList";
 
-export { Navbar, Hero, GlobalData }
+export { Navbar, Hero, CryptocurrencyList }

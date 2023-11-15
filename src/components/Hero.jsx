@@ -37,7 +37,7 @@ const Hero = () => {
             initial="hidden"
             animate="visible"
             transition={{ duration: 1.5, delay: 1.25, ease: "easeInOut" }}
-            className="w-[8.5rem] py-3 bg-[#ef2b55] rounded-md">
+            className="btn">
             Get Started
           </motion.button>
         </div>

@@ -1,13 +1,12 @@
-export const textFadeIn = () => {
+export const textFadeIn = (delay) => {
   return {
-      hidden: { opacity: 0, y: 20 },
+      hidden: { y: 20, opacity: 0 },
       show: {
         y: 0,
         opacity: 1,
         transition: {
-          duration: 1.25,
-          delay: 0.1,
-          ease: "easeInOut"
+          duration: 1.5,
+          delay: delay,
         },
       },
     }
@@ -30,3 +29,15 @@ export const textFadeIn = () => {
       },
     }
   }
+  
+  export const staggerContainer = (staggerChildren, delayChildren) => {
+    return {
+      hidden: {},
+      show: {
+        transition: {
+          staggerChildren: staggerChildren,
+          delayChildren: delayChildren || 0,
+        },
+      },
+    };
+  };
