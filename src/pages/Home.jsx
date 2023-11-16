@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import millify from "millify";
 import { useGetGlobalDataQuery } from "../services/cryptoApi";
-import { Hero, CryptocurrencyList } from "../components";
+import { Hero, CryptocurrencyList, Footer } from "../components";
 
 const Home = () => {
   const { data, isFetching } = useGetGlobalDataQuery();
@@ -67,6 +67,7 @@ const Home = () => {
           </Link>
         </div>
       </section>
+      <Footer />
     </>
   );
 };
