@@ -21,6 +21,9 @@ export const cryptoApi = createApi({
     getCoinsDetails: builder.query({
       query: (id) => createRequest(`/coins/${id}?tickers=false&community_data=false&developer_data=false`)
     }),
+    getCoinsHistory: builder.query({
+      query: (id) => createRequest(`/coins/${id}/market_chart?vs_currency=usd&days=7interval=daily`),
+    }),
   })
 })
 
@@ -29,5 +32,6 @@ export const {
   useGetGlobalDataQuery,
   useGetCoinsDataQuery,
   useGetCoinsDetailsQuery,
+  useGetCoinsHistoryQuery,
 } = cryptoApi
 

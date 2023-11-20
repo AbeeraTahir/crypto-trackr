@@ -1,25 +1,35 @@
 import { useParams } from "react-router-dom";
-import { useGetCoinsDetailsQuery } from "../services/cryptoApi";
-import { Footer } from "../components";
+import {
+  useGetCoinsDetailsQuery,
+  useGetCoinsHistoryQuery,
+} from "../services/cryptoApi";
+import { Footer, CryptoChart } from "../components";
 
 const CryptocurrencyDetails = () => {
   const { id } = useParams();
 
-  const { data, isFetching } = useGetCoinsDetailsQuery(id);
-  console.log(data);
+  const { data: cryptoDetails, isFetching } = useGetCoinsDetailsQuery(id);
+  const { data: cryptoChartData } = useGetCoinsHistoryQuery(id);
+
+  console.log(cryptoDetails);
 
   if (isFetching) "Loading...";
 
   return (
     <>
-      <section className="mt-[5rem] flex flex-col gap-5 p-16 items-center">
+      <section className="flex flex-col gap-5 px-32 py-16 items-center">
         <h2 className="section-heading">
-          {data.name} ({data.symbol}) Details
+          {cryptoDetails?.name} ({cryptoDetails?.symbol}) Details
         </h2>
         <p>
-          {data.name} live price in US Dollar (USD), value statistics, market
-          cap and supply.{" "}
+          {cryptoDetails?.name} live price in US Dollar (USD), value statistics,
+          market cap and supply.{" "}
         </p>
+        <CryptoChart
+          coinHistory={cryptoChartData?.prices}
+          coinName={cryptoDetails?.name}
+          currentPrice={cryptoDetails?.market_data?.high_24h?.usd}
+        />
       </section>
       <Footer />
     </>
