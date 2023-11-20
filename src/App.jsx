@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home, Cryptocurrencies } from "./pages";
+import { Home, Cryptocurrencies, CryptocurrencyDetails } from "./pages";
 import { Navbar } from "./components";
 
 const App = () => {
@@ -9,6 +9,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cryptocurrencies" element={<Cryptocurrencies />} />
+        <Route path="/crypto/:id" element={<CryptocurrencyDetails />} />
       </Routes>
     </Router>
   );

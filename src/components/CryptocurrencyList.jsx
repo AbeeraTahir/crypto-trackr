@@ -27,7 +27,7 @@ const CryptocurrencyList = ({ simplified, searchTerm = "" }) => {
         <div
           className="w-[225px] border rounded-md hover:shadow-lg transition-all transform ease-in-out duration-300"
           key={coin.id}>
-          <Link key={coin.id} to="/">
+          <Link key={coin.id} to={`/crypto/${coin.id}`}>
             <div className="flex flex-col">
               <div className="flex justify-between items-center border-b px-4 py-2">
                 <h2 className="font-[600]">{`${coin.market_cap_rank}. ${coin.name}`}</h2>
