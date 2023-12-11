@@ -19,8 +19,6 @@ const CryptoChart = ({ coinHistory, coinName, currentPrice }) => {
   });
   coinHistory?.forEach((item) => coinPrice.push(item[1]));
 
-  console.log(currentPrice);
-
   const data = {
     labels: coinTimestamp,
     datasets: [
