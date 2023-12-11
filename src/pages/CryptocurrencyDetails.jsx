@@ -2,14 +2,30 @@ import { useParams } from "react-router-dom";
 import HTMLReactParser from "html-react-parser";
 import millify from "millify";
 import {
+  AiOutlineDollar,
+  AiOutlineTrophy,
+  AiOutlineThunderbolt,
+  AiOutlineArrowUp,
+  AiOutlineSync,
+} from "react-icons/ai";
+import { FaRegChartBar, FaComments } from "react-icons/fa";
+import { LiaMoneyBillWaveSolid, LiaClipboardListSolid } from "react-icons/lia";
+import { BsGraphUpArrow, BsReddit } from "react-icons/bs";
+import { BiCoinStack } from "react-icons/bi";
+import { IoHome, IoLogoGithub } from "react-icons/io5";
+import { SiHiveBlockchain } from "react-icons/si";
+import {
   useGetCoinsDetailsQuery,
   useGetCoinsHistoryQuery,
 } from "../services/cryptoApi";
 import { Footer, CryptoChart } from "../components";
 
-const CryptoStatsItem = ({ title, value }) => (
-  <div className="w-full flex justify-between items-center pb-2 border-b">
-    <p>{title}</p>
+const CryptoStatsItem = ({ icon, title, value }) => (
+  <div className="w-full text-[0.925rem] flex justify-between items-center px-2 pb-2 border-b">
+    <div className="flex justify-center items-center gap-5">
+      <span className="text-[1.05rem]">{icon}</span>
+      <p>{title}</p>
+    </div>
     <p>{value}</p>
   </div>
 );
@@ -24,26 +40,32 @@ const CryptocurrencyDetails = () => {
 
   const cryptoStats = [
     {
+      icon: <AiOutlineDollar />,
       title: "Price to USD",
       value: `$ ${millify(cryptoDetails?.market_data?.current_price?.usd)}`,
     },
     {
+      icon: <AiOutlineTrophy />,
       title: "Market Cap Rank",
       value: cryptoDetails?.market_cap_rank,
     },
     {
+      icon: <LiaMoneyBillWaveSolid />,
       title: "Market Cap",
       value: `$ ${millify(cryptoDetails?.market_data?.market_cap?.usd)}`,
     },
     {
+      icon: <AiOutlineThunderbolt />,
       title: "Total Volume",
       value: `$ ${millify(cryptoDetails?.market_data?.total_volume?.usd)}`,
     },
     {
+      icon: <AiOutlineArrowUp />,
       title: "24h high price",
       value: `$ ${millify(cryptoDetails?.market_data?.high_24h?.usd)}`,
     },
     {
+      icon: <FaRegChartBar />,
       title: "24h price change",
       value: `$ ${millify(
         cryptoDetails?.market_data?.market_cap_change_percentage_24h_in_currency
@@ -51,20 +73,24 @@ const CryptocurrencyDetails = () => {
       )}`,
     },
     {
+      icon: <BsGraphUpArrow />,
       title: "All time high value",
       value: `$ ${millify(cryptoDetails?.market_data?.ath?.usd)}`,
     },
     {
+      icon: <BiCoinStack />,
       title: "Diluated Valuation",
       value: `$ ${millify(
         cryptoDetails?.market_data?.fully_diluted_valuation?.usd
       )}`,
     },
     {
+      icon: <LiaClipboardListSolid />,
       title: "Total Supply",
       value: `$ ${millify(cryptoDetails?.market_data?.total_supply)}`,
     },
     {
+      icon: <AiOutlineSync />,
       title: "Circulating Supply",
       value: `$ ${millify(cryptoDetails?.market_data?.circulating_supply)}`,
     },
@@ -72,22 +98,27 @@ const CryptocurrencyDetails = () => {
 
   const cryptoLinks = [
     {
+      icon: <IoHome />,
       name: "Homepage",
       link: cryptoDetails?.links?.homepage[0],
     },
     {
+      icon: <SiHiveBlockchain />,
       name: "Blockchain Site",
       link: cryptoDetails?.links?.blockchain_site[0],
     },
     {
+      icon: <FaComments />,
       name: "Official Forum",
       link: cryptoDetails?.links?.official_forum_url[0],
     },
     {
+      icon: <IoLogoGithub />,
       name: "GitHub",
       link: cryptoDetails?.links?.repos_url?.github[0],
     },
     {
+      icon: <BsReddit />,
       name: "Reddit",
       link: cryptoDetails?.links?.subreddit_url,
     },
@@ -97,7 +128,7 @@ const CryptocurrencyDetails = () => {
 
   return (
     <>
-      <section className="mt-[5rem] flex flex-col gap-5 px-36 py-16 items-center">
+      <section className="mt-[5rem] mb-[2.5rem] flex flex-col gap-5 px-36 py-16 items-center">
         <h2 className="section-heading">
           {cryptoDetails?.name} ({cryptoDetails?.symbol}) Details
         </h2>
@@ -116,18 +147,28 @@ const CryptocurrencyDetails = () => {
           </h3>
           <div className="flex items-center gap-16">
             <div className="flex flex-col w-full items-center gap-8">
-              {cryptoStats.slice(0, 5).map(({ title, value }, index) => (
-                <CryptoStatsItem key={index} title={title} value={value} />
+              {cryptoStats.slice(0, 5).map(({ icon, title, value }, index) => (
+                <CryptoStatsItem
+                  key={index}
+                  icon={icon}
+                  title={title}
+                  value={value}
+                />
               ))}
             </div>
             <div className="flex flex-col w-full items-center gap-8">
-              {cryptoStats.slice(5).map(({ title, value }, index) => (
-                <CryptoStatsItem key={index} title={title} value={value} />
+              {cryptoStats.slice(5).map(({ icon, title, value }, index) => (
+                <CryptoStatsItem
+                  key={index}
+                  icon={icon}
+                  title={title}
+                  value={value}
+                />
               ))}
             </div>
           </div>
         </div>
-        <div className="flex gap-16 w-full mt-12">
+        <div className="flex gap-16 w-full mt-[3.25rem]">
           <div className="flex flex-col items-start gap-5 w-full">
             <h3 className="text-[#ef2b55] text-[1.65rem] font-[600]">
               About {cryptoDetails?.name}
@@ -143,11 +184,14 @@ const CryptocurrencyDetails = () => {
               {cryptoDetails?.name} Links
             </h3>
             <div className="flex flex-col gap-8 items-center">
-              {cryptoLinks.map(({ name, link }, index) => (
+              {cryptoLinks.map(({ icon, name, link }, index) => (
                 <div
                   key={index}
-                  className="w-full flex justify-between items-center pb-3 border-b">
-                  <h4>{name}</h4>
+                  className="w-full flex justify-between items-center px-3 pb-3 border-b text-[0.9rem]">
+                  <div className="flex justify-center items-center gap-5">
+                    <span className="text-[1.05rem] opacity-80">{icon}</span>
+                    <h4>{name}</h4>
+                  </div>
                   {link && link.length > 0 ? (
                     <a
                       href={link}
@@ -157,7 +201,7 @@ const CryptocurrencyDetails = () => {
                       Visit
                     </a>
                   ) : (
-                    <p>Null</p>
+                    <p>Not Available</p>
                   )}
                 </div>
               ))}
