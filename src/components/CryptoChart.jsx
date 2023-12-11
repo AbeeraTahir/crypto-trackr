@@ -49,11 +49,11 @@ const CryptoChart = ({ coinHistory, coinName, currentPrice }) => {
 
   return (
     <>
-      <div className="w-full flex items-center justify-between mt-6 pt-4 border-t">
-        <p className="text-[#ef2b55] text-[1.65rem] font-[600]">
+      <div className="w-full flex flex-col md:flex-row items-center gap-3 md:justify-between mt-6 pt-4 border-t">
+        <p className="text-[#ef2b55] text-[1.45rem] md:text-[1.65rem] font-[600]">
           {coinName} Price Chart
         </p>
-        <p className="text-[1.075rem] font-[500]">{`Current ${coinName} Price: $ ${millify(
+        <p className="text-[0.85rem] md:text-[1.075rem] font-[500]">{`Current ${coinName} Price: $ ${millify(
           currentPrice
         )}`}</p>
       </div>

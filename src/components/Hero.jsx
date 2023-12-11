@@ -1,11 +1,25 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import bg from "../assets/images/bg.png";
 
 const Hero = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <>
-      <section className="h-screen pl-20 pr-8 w-full bg-[#041125] flex justify-center items-center text-white">
-        <div className="w-full flex flex-col gap-8 pt-8">
+      <section className="h-screen pl-8 md:pl-20 pr-8 w-full bg-[#041125] flex md:flex-row flex-col justify-center items-center text-white">
+        <div className="w-full flex flex-col md:gap-8 gap-6 pt-16 md:pt-8">
           <motion.h1
             variants={{
               hidden: { opacity: 0, y: 30 },
@@ -14,7 +28,7 @@ const Hero = () => {
             initial="hidden"
             animate="visible"
             transition={{ duration: 1.5, delay: 0, ease: "easeInOut" }}
-            className="text-[3.125rem] font-[600] leading-[4.1rem]">
+            className="text-[1.75rem] md:text-[3.125rem] font-[600] md:leading-[4.1rem]">
             Discover the World of Cryptocurrency
           </motion.h1>
           <motion.h2
@@ -25,21 +39,23 @@ const Hero = () => {
             initial="hidden"
             animate="visible"
             transition={{ duration: 1.5, delay: 0.75, ease: "easeInOut" }}
-            className="text-[1.5rem] font-[400] leading-[2.5rem]">
+            className="text-[0.95rem] md:text-[1.5rem] font-[400] leading-7 md:leading-[2.5rem]">
             Bringing You Comprehensive Crypto Information, Market Trends, and
             Pricing History.
           </motion.h2>
-          <motion.button
-            variants={{
-              hidden: { opacity: 0, y: 30 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            initial="hidden"
-            animate="visible"
-            transition={{ duration: 1.5, delay: 1.25, ease: "easeInOut" }}
-            className="btn">
-            Get Started
-          </motion.button>
+          <div className={windowWidth < 768 ? "hidden" : "visible"}>
+            <motion.button
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 1.5, delay: 1.25, ease: "easeInOut" }}
+              className="btn">
+              Get Started
+            </motion.button>
+          </div>
         </div>
         <motion.div
           variants={{
@@ -49,8 +65,8 @@ const Hero = () => {
           initial="hidden"
           animate="visible"
           transition={{ duration: 2, delay: 0.25, ease: "easeInOut" }}
-          className="w-full flex justify-end pt-16">
-          <img src={bg} alt="crypto image" width={550} />
+          className="md:min-w-[550px] min-w-[270px] flex justify-end pt-10 md:pt-16">
+          <img src={bg} alt="crypto image" />
         </motion.div>
       </section>
     </>

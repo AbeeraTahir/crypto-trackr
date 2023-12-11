@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import millify from "millify";
+import { HashLoader } from "react-spinners";
 import { useGetCoinsDataQuery } from "../services/cryptoApi";
 
 const CryptocurrencyList = ({ simplified, searchTerm = "" }) => {
@@ -17,15 +18,15 @@ const CryptocurrencyList = ({ simplified, searchTerm = "" }) => {
     setCryptos(filteredData);
   }, [data, searchTerm]);
 
-  if (isFetching) return "Loading...";
+  if (isFetching) return <HashLoader color="#ef2b55" />;
 
   const displayedCoins = simplified ? cryptos?.slice(0, 10) : cryptos;
 
   return (
-    <div className="grid grid-cols-5 gap-5">
+    <div className="grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-4">
       {displayedCoins?.map((coin) => (
         <div
-          className="w-[225px] border rounded-md hover:shadow-lg transition-all transform ease-in-out duration-300"
+          className="w-full md:w-[225px] border rounded-md hover:shadow-lg transition-all transform ease-in-out duration-300"
           key={coin.id}>
           <Link key={coin.id} to={`/crypto/${coin.id}`}>
             <div className="flex flex-col">

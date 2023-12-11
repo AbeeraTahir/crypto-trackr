@@ -34,3 +34,11 @@
   color: var(--sction-heading-color);
   font-weight: 600;
 }
+
+@media screen and (max-width: 767px) {
+  .section-heading {
+    font-size: 1.875rem;
+    color: var(--sction-heading-color);
+    font-weight: 600;
+  }
+}
