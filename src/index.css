@@ -44,7 +44,7 @@
   z-index: 20;
   padding: 12px 5px;
   background-color: #041125;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.7s linear;
 }
 
 .mobile-menu.mobile-menu-show {

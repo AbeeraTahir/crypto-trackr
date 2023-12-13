@@ -41,41 +41,45 @@ const Home = () => {
     },
   ];
 
-  if (isFetching) return <HashLoader color="#ef2b55" />;
-
   return (
     <>
       <Hero />
-      <section className="md:px-16 py-16 flex flex-col gap-12 md:gap-16">
-        <div className="px-6 flex flex-col gap-6">
-          <h2 className="section-heading">Global Crypto Data</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-7 md:gap-0">
-            {globalDataList.map(({ id, title, value }) => (
-              <div
-                key={id}
-                className="w-[140px] md:w-full py-5 flex flex-col gap-3">
-                <p className="text-[0.875rem] md:text-[1rem] opacity-80 overflow-hidden whitespace-nowrap text-ellipsis">
-                  {title}
-                </p>
-                <p className="text-[1.5rem] md:text-[1.75rem]">
-                  {millify(value)}
-                </p>
-              </div>
-            ))}
-          </div>
+      {isFetching ? (
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <HashLoader color="#ef2b55" />
         </div>
-        <div className="flex flex-col gap-10">
-          <h2 className="px-6 section-heading">
-            Top 10 Cryptocurrencies in the World
-          </h2>
-          <div className="px-2">
-            <CryptocurrencyList simplified />
+      ) : (
+        <section className="md:px-16 py-16 flex flex-col gap-12 md:gap-16">
+          <div className="px-6 flex flex-col gap-6">
+            <h2 className="section-heading">Global Crypto Data</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-7 md:gap-0">
+              {globalDataList.map(({ id, title, value }) => (
+                <div
+                  key={id}
+                  className="w-[140px] md:w-full py-5 flex flex-col gap-3">
+                  <p className="text-[0.875rem] md:text-[1rem] opacity-80 overflow-hidden whitespace-nowrap text-ellipsis">
+                    {title}
+                  </p>
+                  <p className="text-[1.5rem] md:text-[1.75rem]">
+                    {millify(value)}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-          <Link className="md:mr-0 mr-auto ml-auto" to="/cryptocurrencies">
-            <button className="btn">Show more</button>
-          </Link>
-        </div>
-      </section>
+          <div className="flex flex-col gap-10">
+            <h2 className="px-6 section-heading">
+              Top 10 Cryptocurrencies in the World
+            </h2>
+            <div className="px-2">
+              <CryptocurrencyList simplified />
+            </div>
+            <Link className="md:mr-0 mr-auto ml-auto" to="/cryptocurrencies">
+              <button className="btn">Show more</button>
+            </Link>
+          </div>
+        </section>
+      )}
       <Footer />
     </>
   );

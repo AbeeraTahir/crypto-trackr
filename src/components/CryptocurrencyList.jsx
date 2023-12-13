@@ -18,7 +18,13 @@ const CryptocurrencyList = ({ simplified, searchTerm = "" }) => {
     setCryptos(filteredData);
   }, [data, searchTerm]);
 
-  if (isFetching) return <HashLoader color="#ef2b55" />;
+  if (isFetching) {
+    return (
+      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <HashLoader color="#ef2b55" />
+      </div>
+    );
+  }
 
   const displayedCoins = simplified ? cryptos?.slice(0, 10) : cryptos;
 

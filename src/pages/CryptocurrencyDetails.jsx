@@ -19,7 +19,7 @@ import {
   useGetCoinsDetailsQuery,
   useGetCoinsHistoryQuery,
 } from "../services/cryptoApi";
-import { Footer, CryptoChart } from "../components";
+import { CryptoChart, Footer } from "../components";
 
 const CryptoStatsItem = ({ icon, title, value }) => (
   <div className="w-full text-[0.85rem] md:text-[0.925rem] flex justify-between items-center px-2 pb-2 border-b">
@@ -123,11 +123,17 @@ const CryptocurrencyDetails = () => {
     },
   ];
 
-  if (isFetching) "Loading...";
+  if (isFetching) {
+    return (
+      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <HashLoader color="#ef2b55" />
+      </div>
+    );
+  }
 
   return (
     <>
-      <section className="mt-[5rem] mb-[2.5rem] flex flex-col gap-5 px-6 md:px-36 py-16 items-center">
+      <section className="mt-[5rem] mb-[2.5rem] flex flex-col gap-5 px-6 md:px-36 py-12 items-start md:items-center">
         <h2 className="section-heading">
           {cryptoDetails?.name} ({cryptoDetails?.symbol}) Details
         </h2>

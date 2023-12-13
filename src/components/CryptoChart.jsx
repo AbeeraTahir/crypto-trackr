@@ -33,6 +33,9 @@ const CryptoChart = ({ coinHistory, coinName, currentPrice }) => {
   };
 
   const options = {
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 2,
     scales: {
       x: {
         ticks: {
