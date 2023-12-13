@@ -31,10 +31,10 @@ const CryptocurrencyList = ({ simplified, searchTerm = "" }) => {
           <Link key={coin.id} to={`/crypto/${coin.id}`}>
             <div className="flex flex-col">
               <div className="flex justify-between items-center border-b px-4 py-2">
-                <h2 className="font-[600]">{`${coin.market_cap_rank}. ${coin.name}`}</h2>
+                <h2 className="text-[0.875rem] md:text-[1rem] font-[600]">{`${coin.market_cap_rank}. ${coin.name}`}</h2>
                 <img className="w-[35px]" src={coin.image} alt={coin.name} />
               </div>
-              <div className="flex flex-col gap-2 p-4 text-[0.9rem]">
+              <div className="flex flex-col gap-2 p-4 text-[0.75rem] md:text-[0.9rem]">
                 <p>Price: {millify(coin.current_price)}</p>
                 <p>Market Cap: {millify(coin.market_cap)}</p>
                 <p>Total Volume: {millify(coin.total_volume)}</p>

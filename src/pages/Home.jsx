@@ -47,7 +47,7 @@ const Home = () => {
     <>
       <Hero />
       <section className="md:px-16 py-16 flex flex-col gap-12 md:gap-16">
-        <div className="px-8 flex flex-col gap-6">
+        <div className="px-6 flex flex-col gap-6">
           <h2 className="section-heading">Global Crypto Data</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-7 md:gap-0">
             {globalDataList.map(({ id, title, value }) => (
@@ -65,7 +65,7 @@ const Home = () => {
           </div>
         </div>
         <div className="flex flex-col gap-10">
-          <h2 className="px-8 section-heading">
+          <h2 className="px-6 section-heading">
             Top 10 Cryptocurrencies in the World
           </h2>
           <div className="px-2">

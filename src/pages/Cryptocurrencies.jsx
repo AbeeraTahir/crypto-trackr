@@ -9,7 +9,7 @@ const Cryptocurrencies = () => {
     <>
       <section className="mt-[5rem] flex flex-col gap-10 px-2 py-8 md:p-16 items-center">
         <h2 className="section-heading">All Cryptocurrencies</h2>
-        <div className="border border-gray-300 w-[280px] md:w-1/2 px-4 py-2 flex items-center gap-4 rounded-md">
+        <div className="border border-gray-300 w-full md:w-1/2 px-4 py-2 flex items-center gap-4 rounded-md">
           <img src={search} alt="search" className="opacity-40" width={20} />
           <input
             type="search"

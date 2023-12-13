@@ -35,6 +35,22 @@
   font-weight: 600;
 }
 
+.mobile-menu {
+  width: 55%;
+  height: 100%;
+  position: fixed;
+  top: 58px;
+  right: -100%;
+  z-index: 20;
+  padding: 12px 5px;
+  background-color: #041125;
+  transition: all 0.3s ease-in-out;
+}
+
+.mobile-menu.mobile-menu-show {
+   right: 0;
+}
+
 @media screen and (max-width: 767px) {
   .section-heading {
     font-size: 1.875rem;
