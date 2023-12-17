@@ -33,9 +33,7 @@ const CryptoChart = ({ coinHistory, coinName, currentPrice }) => {
   };
 
   const options = {
-    responsive: true,
-    maintainAspectRatio: true,
-    aspectRatio: 2,
+    maintainAspectRatio: false,
     scales: {
       x: {
         ticks: {
@@ -60,7 +58,11 @@ const CryptoChart = ({ coinHistory, coinName, currentPrice }) => {
           currentPrice
         )}`}</p>
       </div>
-      <Line data={data} options={options} />
+      <div className="chartCard">
+        <div className="chartBox">
+          <Line data={data} options={options} />
+        </div>
+      </div>
     </>
   );
 };

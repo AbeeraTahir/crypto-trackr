@@ -51,6 +51,17 @@
    right: 0;
 }
 
+.chartCard {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chartBox {
+  width: 100%;
+  height: calc(100vh - 30vh);
+}
+
 @media screen and (max-width: 767px) {
   .section-heading {
     font-size: 1.875rem;
