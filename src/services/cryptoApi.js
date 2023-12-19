@@ -1,10 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 const cryptoApiHeaders = {
-  'accept': 'application/json'
+  'X-RapidAPI-Key': import.meta.env.VITE_API_KEY,
+  'X-RapidAPI-Host': import.meta.env.VITE_API_HOST
 }
 
-const baseUrl = "https://api.coingecko.com/api/v3"
+const baseUrl = "https://coinranking1.p.rapidapi.com"
 
 const createRequest = (url) => ({ url, headers: cryptoApiHeaders})
 
@@ -12,26 +13,22 @@ export const cryptoApi = createApi({
   reducerPath: "cryptoApi",
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
-    getGlobalData: builder.query({
-      query: () => createRequest(`/global`)
+    getCryptos: builder.query({
+      query: (count) => createRequest(`/coins?limit=${count}`)
     }),
-    getCoinsData: builder.query({
-      query: () => createRequest(`/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en`)
+    getCryptoDetails: builder.query({
+      query: (id) => createRequest(`/coin/${id}`)
     }),
-    getCoinsDetails: builder.query({
-      query: (id) => createRequest(`/coins/${id}?tickers=false&community_data=false&developer_data=false`)
-    }),
-    getCoinsHistory: builder.query({
-      query: (id) => createRequest(`/coins/${id}/market_chart?vs_currency=usd&days=7interval=daily`),
-    }),
+    getCryptoHistory: builder.query({
+      query: ({ id }) => createRequest(`/coin/${id}/history`),
+    })
   })
 })
 
 
 export const {
-  useGetGlobalDataQuery,
-  useGetCoinsDataQuery,
-  useGetCoinsDetailsQuery,
-  useGetCoinsHistoryQuery,
+  useGetCryptosQuery,
+  useGetCryptoDetailsQuery,
+  useGetCryptoHistoryQuery
 } = cryptoApi
 

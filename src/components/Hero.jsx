@@ -44,17 +44,19 @@ const Hero = () => {
             Pricing History.
           </motion.h2>
           <div className={windowWidth < 768 ? "hidden" : "visible"}>
-            <motion.button
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              initial="hidden"
-              animate="visible"
-              transition={{ duration: 1.5, delay: 1.25, ease: "easeInOut" }}
-              className="btn">
-              Get Started
-            </motion.button>
+            <a href="#crypto-stats">
+              <motion.button
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                initial="hidden"
+                animate="visible"
+                transition={{ duration: 1.5, delay: 1.25, ease: "easeInOut" }}
+                className="btn">
+                Get Started
+              </motion.button>
+            </a>
           </div>
         </div>
         <motion.div
@@ -64,7 +66,7 @@ const Hero = () => {
           }}
           initial="hidden"
           animate="visible"
-          transition={{ duration: 2, delay: 0.25, ease: "easeInOut" }}
+          transition={{ duration: 1.5, delay: 1.5, ease: "easeInOut" }}
           className="md:min-w-[550px] min-w-[270px] flex justify-end pt-10 md:pt-16">
           <img src={bg} alt="crypto image" />
         </motion.div>

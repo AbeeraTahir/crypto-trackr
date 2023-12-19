@@ -10,20 +10,32 @@ const CryptoChart = ({ coinHistory, coinName, currentPrice }) => {
   const coinTimestamp = [];
   const coinPrice = [];
 
-  coinHistory?.forEach((item) => {
-    const date = new Date(item[0]);
-    const day = date.getDate();
-    const month = date.getMonth() + 1; // Adding 1 because getMonth() returns zero-based months
-    const year = date.getFullYear();
-    return coinTimestamp.push(`${day}/${month}/${year}`);
+  const timeOptions = {
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    timeZone: "UTC",
+  };
+
+  coinHistory?.data?.history?.forEach((coin) => {
+    return coinPrice.push(coin.price);
   });
-  coinHistory?.forEach((item) => coinPrice.push(item[1]));
+
+  coinHistory?.data?.history?.forEach((coin) => {
+    return coinTimestamp.push(
+      new Date(coin.timestamp * 1000).toLocaleString("en-US", timeOptions)
+    );
+  });
+
+  coinPrice.reverse();
+  coinTimestamp.reverse();
 
   const data = {
     labels: coinTimestamp,
     datasets: [
       {
-        label: "Price In USD in the last 7 days",
+        label: "Price In USD (Last 24hrs (UTC))",
         data: coinPrice,
         fill: false,
         backgroundColor: "#ef2b55",
