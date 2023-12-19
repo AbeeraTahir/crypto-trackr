@@ -48,7 +48,7 @@
 }
 
 .mobile-menu.mobile-menu-show {
-   right: 0;
+  right: 0;
 }
 
 .chartCard {
@@ -57,6 +57,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .chartBox {
   width: 100%;
   height: calc(100vh - 30vh);
