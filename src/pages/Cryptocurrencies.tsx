@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import millify from "millify";
-import { HashLoader } from "react-spinners";
+import { Loader, Error } from "../components";
 import { useGetCryptosQuery } from "../services/cryptoApi";
 import search from "../assets/icons/search.png";
 
-interface CryptocurrenciesProps {
+export interface SimplifyProps {
   simplified?: boolean
 }
 
@@ -19,9 +19,9 @@ interface Crypto {
   change: number;
 };
 
-const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
+const Cryptocurrencies = ({ simplified }: SimplifyProps) => {
   const count = simplified ? 10 : 100;
-  const { data: cryptosList, isFetching } = useGetCryptosQuery(count);
+  const { data: cryptosList, isFetching, error } = useGetCryptosQuery(count);
   const [cryptos, setCryptos] = useState<Crypto[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -36,15 +36,9 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
     setCryptos(filteredData);
   }, [cryptosList, searchTerm]);
 
-  if (isFetching) {
-    return (
-      <div className={`${simplified ? "h-[10rem]" : "h-screen"} relative`}>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <HashLoader color="#ef2b55" />
-        </div>
-      </div>
-    );
-  }
+  if (isFetching) return <Loader />
+
+  if (error) return <Error errorMsg={error?.data?.message} />
 
   return (
     <section

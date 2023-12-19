@@ -1,9 +1,10 @@
 import millify from "millify";
-import { HashLoader } from "react-spinners";
+import Loader from "./Loader";
+import Error from "./Error";
 import { useGetCryptosQuery } from "../services/cryptoApi";
 
 const GlobalStats = () => {
-  const { data, isFetching } = useGetCryptosQuery(10);
+  const { data, isFetching, error } = useGetCryptosQuery(10);
   const globalStats = data?.data?.stats;
 
   const globalDataList = [
@@ -34,14 +35,12 @@ const GlobalStats = () => {
     },
   ];
 
+  if (error) return <Error simplified={true} errorMsg={error?.data?.message} />
+
   return (
     <>
       {isFetching ? (
-        <div className="h-[10rem] relative">
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <HashLoader color="#ef2b55" />
-          </div>
-        </div>
+        <Loader simplified />
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-7 md:gap-0">
           {globalDataList.map(({ id, title, value }) => (

@@ -3,10 +3,15 @@ import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import { Line } from "react-chartjs-2";
 import millify from "millify";
+import { useGetCryptoHistoryQuery } from "../services/cryptoApi";
+import Error from "./Error";
 
 Chart.register(CategoryScale);
 
-const CryptoChart = ({ coinHistory, coinName, currentPrice }) => {
+const CryptoChart = ({ id, coinName, currentPrice }) => {
+  const { data: coinHistory, error } = useGetCryptoHistoryQuery({
+    id,
+  });
   const coinTimestamp = [];
   const coinPrice = [];
 
@@ -59,6 +64,8 @@ const CryptoChart = ({ coinHistory, coinName, currentPrice }) => {
       },
     },
   };
+
+  if (error) return <Error errorMsg={error?.data?.message} />;
 
   return (
     <>

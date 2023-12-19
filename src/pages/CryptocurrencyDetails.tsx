@@ -14,12 +14,8 @@ import { LiaMoneyBillWaveSolid, LiaClipboardListSolid } from "react-icons/lia";
 import { BsGraphUpArrow } from "react-icons/bs";
 import { IoCheckmark } from "react-icons/io5";
 import { MdCurrencyExchange, MdClose } from "react-icons/md";
-import { HashLoader } from "react-spinners";
-import {
-  useGetCryptoDetailsQuery,
-  useGetCryptoHistoryQuery,
-} from "../services/cryptoApi";
-import { CryptoChart } from "../components";
+import { useGetCryptoDetailsQuery } from "../services/cryptoApi";
+import { CryptoChart, Loader, Error } from "../components";
 
 interface CryptoStatsItemProps {
   title: string;
@@ -40,10 +36,7 @@ const CryptoStatsItem = ({ icon, title, value }: CryptoStatsItemProps) => (
 const CryptocurrencyDetails = () => {
   const { id } = useParams();
 
-  const { data, isFetching } = useGetCryptoDetailsQuery(id);
-  const { data: coinHistory } = useGetCryptoHistoryQuery({
-    id,
-  });
+  const { data, isFetching, error } = useGetCryptoDetailsQuery(id);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -110,15 +103,9 @@ const CryptocurrencyDetails = () => {
     },
   ];
 
-  if (isFetching) {
-    return (
-      <div className="h-screen relative">
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <HashLoader color="#ef2b55" />
-        </div>
-      </div>
-    );
-  }
+  if (isFetching) return <Loader />
+
+  if (error) return <Error errorMsg={error?.data?.message} />
 
   return (
     <section className="mt-[5rem] mb-[2.5rem] flex flex-col gap-5 px-6 md:px-36 py-12 items-center">
@@ -130,7 +117,7 @@ const CryptocurrencyDetails = () => {
         statistics, market cap and supply.{" "}
       </p>
       <CryptoChart
-        coinHistory={coinHistory}
+        id={id}
         coinName={cryptoDetails?.name}
         currentPrice={cryptoDetails?.price}
       />
