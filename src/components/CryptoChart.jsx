@@ -1,8 +1,8 @@
+/* eslint-disable react/prop-types */
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import { Line } from "react-chartjs-2";
 import millify from "millify";
-import PropTypes from "prop-types";
 
 Chart.register(CategoryScale);
 
@@ -77,12 +77,6 @@ const CryptoChart = ({ coinHistory, coinName, currentPrice }) => {
       </div>
     </>
   );
-};
-
-CryptoChart.propTypes = {
-  coinHistory: PropTypes.arrayOf(
-    PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
-  ).isRequired,
 };
 
 export default CryptoChart;

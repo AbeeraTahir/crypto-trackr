@@ -5,17 +5,31 @@ import { HashLoader } from "react-spinners";
 import { useGetCryptosQuery } from "../services/cryptoApi";
 import search from "../assets/icons/search.png";
 
-const Cryptocurrencies = ({ simplified }) => {
+interface CryptocurrenciesProps {
+  simplified?: boolean
+}
+
+interface Crypto {
+  uuid: string;
+  name: string;
+  rank: number;
+  iconUrl: string;
+  price: number;
+  marketCap: number;
+  change: number;
+};
+
+const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
   const count = simplified ? 10 : 100;
   const { data: cryptosList, isFetching } = useGetCryptosQuery(count);
-  const [cryptos, setCryptos] = useState();
+  const [cryptos, setCryptos] = useState<Crypto[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     window.scrollTo(0, 0);
     setCryptos(cryptosList?.data?.coins);
 
-    const filteredData = cryptosList?.data?.coins.filter((item) =>
+    const filteredData = cryptosList?.data?.coins.filter((item: { name: string; }) =>
       item.name.toLowerCase().includes(searchTerm)
     );
 

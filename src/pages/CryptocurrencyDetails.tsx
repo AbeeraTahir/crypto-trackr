@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import HTMLReactParser from "html-react-parser";
 import millify from "millify";
@@ -21,7 +21,13 @@ import {
 } from "../services/cryptoApi";
 import { CryptoChart } from "../components";
 
-const CryptoStatsItem = ({ icon, title, value }) => (
+interface CryptoStatsItemProps {
+  title: string;
+  value: string | number | ReactNode;
+  icon: ReactNode;
+}
+
+const CryptoStatsItem = ({ icon, title, value }: CryptoStatsItemProps) => (
   <div className="w-full text-[0.85rem] md:text-[0.925rem] flex justify-between items-center px-2 pb-2 border-b">
     <div className="flex justify-center items-center gap-5">
       <span className="text-[1.05rem]">{icon}</span>
@@ -45,18 +51,16 @@ const CryptocurrencyDetails = () => {
 
   const cryptoDetails = data?.data?.coin;
 
-  console.log(cryptoDetails);
-
-  const cryptoStats = [
+  const cryptoStats: CryptoStatsItemProps[] = [
     {
       title: "Price to USD",
-      value: `$ ${millify(cryptoDetails?.price)}`,
+      value: `$ ${millify(Number(cryptoDetails?.price))}`,
       icon: <AiOutlineDollar />,
     },
     { title: "Rank", value: cryptoDetails?.rank, icon: <AiOutlineTrophy /> },
     {
       title: "24h Volume",
-      value: `$ ${millify(cryptoDetails?.["24hVolume"])}`,
+      value: `$ ${millify(Number(cryptoDetails?.["24hVolume"]))}`,
       icon: <AiOutlineThunderbolt />,
     },
     {
@@ -173,7 +177,7 @@ const CryptocurrencyDetails = () => {
             {cryptoDetails?.name} Links
           </h3>
           <div className="flex flex-col gap-8 items-center">
-            {cryptoDetails.links?.map((link, index) => (
+            {cryptoDetails.links?.map((link: any, index: number) => (
               <div
                 key={index}
                 className="w-full flex justify-between items-center px-3 pb-3 border-b text-[0.95rem]">
