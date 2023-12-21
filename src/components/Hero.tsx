@@ -18,7 +18,7 @@ const Hero = () => {
   }, []);
   return (
     <>
-      <section className="h-screen pl-8 md:pl-20 pr-8 w-full bg-[#041125] text-white">
+      <section className="mt-[2.25rem] h-screen pl-8 md:pl-20 pr-9 w-full bg-[#041125] text-white">
         <div className="h-full flex flex-col md:flex-row gap-10 md:gap-4 justify-center items-center">     
           <div className="w-full flex flex-col gap-8">
             <motion.h1
@@ -68,7 +68,7 @@ const Hero = () => {
             initial="hidden"
             animate="visible"
             transition={{ duration: 1.5, delay: 1.5, ease: "easeInOut" }}
-            className="md:min-w-[550px] min-w-[270px]">
+            className="md:min-w-[550px] min-w-[270px] pl-3 md:pl-0">
             <img src={bg} alt="crypto image" />
           </motion.div>
         </div>

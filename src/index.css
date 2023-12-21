@@ -36,13 +36,13 @@
 }
 
 .mobile-menu {
-  width: 55%;
+  width: 80%;
   height: 100%;
   position: fixed;
   top: 58px;
   right: -100%;
   z-index: 20;
-  padding: 12px 5px;
+  padding: 32px;
   background-color: #041125;
   transition: all 0.7s linear;
 }
