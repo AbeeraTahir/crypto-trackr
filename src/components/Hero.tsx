@@ -18,8 +18,8 @@ const Hero = () => {
   }, []);
   return (
     <>
-      <section className="mt-[2.25rem] h-screen pl-8 md:pl-20 pr-9 w-full bg-[#041125] text-white">
-        <div className="h-full flex flex-col md:flex-row gap-10 md:gap-4 justify-center items-center">     
+      <section className="mt-[2rem] h-screen pl-8 md:pl-20 pr-9 w-full bg-[#041125] text-white">
+        <div className="h-full flex flex-col md:flex-row gap-10 md:gap-4 justify-center items-center">
           <div className="w-full flex flex-col gap-8">
             <motion.h1
               variants={{
