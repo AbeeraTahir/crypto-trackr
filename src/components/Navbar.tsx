@@ -40,15 +40,15 @@ const Navbar = () => {
     <>
       <header className="w-full flex items-center text-white">
         <nav className="w-full flex items-center justify-between bg-[#041125] fixed top-0 z-20 px-8 md:px-20 py-4">
-          <h2 className="text-[0.925rem] md:text-[1.35rem] font-[700]">
+          <h2 className="text-[0.985rem] md:text-[1.35rem] font-[700]">
             Crypto
-            <span className="text-[#ef2b55] text-[1.127rem] md:text-[1.57rem]">
+            <span className="text-[#ef2b55] text-[1.177rem] md:text-[1.57rem]">
               Trackr
             </span>
           </h2>
           {windowWidth < 768 ? (
             <div
-              className="text-[1.2rem] cursor-pointer"
+              className="text-[1.35rem] cursor-pointer"
               onClick={toggleMenuBar}>
               {isMobileMenuActive ? <IoClose /> : <IoMenu />}
             </div>
@@ -78,11 +78,11 @@ const Navbar = () => {
             isMobileMenuActive ? "mobile-menu-show" : ""
           }`}>
           {isMobileMenuActive && (
-            <ul className="flex flex-col items-start gap-3 px-8">
+            <ul className="flex flex-col items-start justify-center gap-4">
               {links.map((link) => (
                 <li
                   key={link.id}
-                  className="text-[0.875rem] md:text-[1rem]"
+                  className="text-[0.975rem] md:text-[1rem]"
                   onClick={toggleMenuBar}>
                   <NavLink
                     to={link.path}
