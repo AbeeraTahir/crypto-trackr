@@ -63,12 +63,12 @@ const Cryptocurrencies = ({ simplified }: SimplifyProps) => {
           </div>
         </>
       )}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-4">
+      <div className="grid grid-responsive gap-2 md:gap-4">
         {cryptos && cryptos.length > 0 ? (
           <>
             {cryptos?.map((currency) => (
               <div
-                className="w-full md:w-[225px] border rounded-md hover:shadow-lg transition-all transform ease-in-out duration-300"
+                className="border rounded-md hover:shadow-lg transition-all transform ease-in-out duration-300"
                 key={currency.uuid}>
                 <Link key={currency.uuid} to={`/crypto/${currency.uuid}`}>
                   <div className="flex flex-col">
