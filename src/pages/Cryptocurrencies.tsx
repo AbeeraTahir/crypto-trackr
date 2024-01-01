@@ -6,7 +6,7 @@ import { useGetCryptosQuery } from "../services/cryptoApi";
 import search from "../assets/icons/search.png";
 
 export interface SimplifyProps {
-  simplified?: boolean
+  simplified?: boolean;
 }
 
 interface Crypto {
@@ -17,7 +17,7 @@ interface Crypto {
   price: number;
   marketCap: number;
   change: number;
-};
+}
 
 const Cryptocurrencies = ({ simplified }: SimplifyProps) => {
   const count = simplified ? 10 : 100;
@@ -29,16 +29,17 @@ const Cryptocurrencies = ({ simplified }: SimplifyProps) => {
     window.scrollTo(0, 0);
     setCryptos(cryptosList?.data?.coins);
 
-    const filteredData = cryptosList?.data?.coins.filter((item: { name: string; }) =>
-      item.name.toLowerCase().includes(searchTerm)
+    const filteredData = cryptosList?.data?.coins.filter(
+      (item: { name: string }) => item.name.toLowerCase().includes(searchTerm)
     );
 
     setCryptos(filteredData);
   }, [cryptosList, searchTerm]);
 
-  if (isFetching) return <Loader />
+  if (isFetching) return <Loader />;
 
-  if (error) return <Error errorMsg={error?.data?.message} />
+  if (error)
+    return <Error errorMsg={error?.data?.message} simplified={simplified} />;
 
   return (
     <section
