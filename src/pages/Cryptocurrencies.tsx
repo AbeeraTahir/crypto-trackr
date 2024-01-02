@@ -63,7 +63,7 @@ const Cryptocurrencies = ({ simplified }: SimplifyProps) => {
           </div>
         </>
       )}
-      <div className="grid grid-responsive gap-2 md:gap-4">
+      <div className="w-full grid grid-responsive gap-2 md:gap-4">
         {cryptos && cryptos.length > 0 ? (
           <>
             {cryptos?.map((currency) => (
@@ -75,7 +75,7 @@ const Cryptocurrencies = ({ simplified }: SimplifyProps) => {
                     <div className="flex justify-between items-center border-b px-4 py-2">
                       <h2 className="text-[0.875rem] md:text-[1rem] font-[600]">{`${currency.rank}. ${currency.name}`}</h2>
                       <img
-                        className="w-[35px]"
+                        className="w-[35px] max-h-[35px]"
                         src={currency.iconUrl}
                         alt={currency.name}
                       />
