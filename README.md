@@ -20,9 +20,9 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 CryotoTrackr <a name="cryptotrackr"></a>
+# 📖 CryptoTrackr <a name="cryptotrackr"></a>
 
-**CryptoTrackr** is a cryptocurrency tracking web application that provides users with real-time updates, statistics, and pricing history of different cryptocurrencies. Leveraging the power of React for building the interactive user interface, TypeScript for type safety, and Redux Toolkit Query for efficient data fetching and caching, the app offers an intuitive user experience, making it easy for to explore and analyze cryptocurrency data.
+**CryptoTrackr** is a cryptocurrency tracking web application that provides users with real-time updates, statistics, and pricing history of different cryptocurrencies. Built with React, TypeScript, and Redux Toolkit Query, the app offers an intuitive user experience, making it easy to explore and analyze cryptocurrency data.
 
 ## 🛠 Built With <a name="built-with"></a>
 
