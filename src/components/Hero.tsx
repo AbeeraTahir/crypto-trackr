@@ -29,7 +29,7 @@ const Hero = () => {
               initial="hidden"
               animate="visible"
               transition={{ duration: 1.5, delay: 0, ease: "easeInOut" }}
-              className="text-[1.875rem] md:text-[2.5rem] lg:text-[3.125rem] font-[600] md:leading-[4.1rem]">
+              className="text-[1.875rem] md:text-[2.5rem] lg:text-[3rem] font-[600] md:leading-[4.1rem]">
               Discover the World of Cryptocurrency
             </motion.h1>
             <motion.h2
@@ -40,9 +40,9 @@ const Hero = () => {
               initial="hidden"
               animate="visible"
               transition={{ duration: 1.5, delay: 0.75, ease: "easeInOut" }}
-              className="text-[0.975rem] md:text-[1.25rem] lg:text-[1.5rem] font-[400] leading-7 md:leading-[2.5rem]">
-              Bringing You Comprehensive Crypto Information, Market Trends, and
-              Pricing History.
+              className="text-[0.975rem] md:text-[1.25rem] lg:text-[1.45rem] font-[400] leading-7 md:leading-[2.5rem]">
+              Bringing You Comprehensive Crypto Information, Value Statistics,
+              and Pricing History.
             </motion.h2>
             <div className={windowWidth < 768 ? "hidden" : "visible"}>
               <a href="#crypto-stats">
