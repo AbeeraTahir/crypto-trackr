@@ -1,21 +1,43 @@
-/* eslint-disable react/prop-types */
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import { Line } from "react-chartjs-2";
 import millify from "millify";
 import { useGetCryptoHistoryQuery } from "../services/cryptoApi";
 import Error from "./Error";
+import { useEffect } from "react";
 
 Chart.register(CategoryScale);
 
-const CryptoChart = ({ id, coinName, currentPrice }) => {
+interface CryptoChartProps {
+  id: string;
+  coinName: string;
+  currentPrice: number;
+}
+
+interface CoinTypes {
+  price: number;
+  timestamp: number;
+}
+
+const CryptoChart: React.FC<CryptoChartProps> = ({
+  id,
+  coinName,
+  currentPrice,
+}) => {
   const { data: coinHistory, error } = useGetCryptoHistoryQuery({
     id,
   });
-  const coinTimestamp = [];
-  const coinPrice = [];
 
-  const timeOptions = {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  if (error) return <Error errorMsg={error?.data?.message} />;
+
+  const coinTimestamp: string[] = [];
+  const coinPrice: number[] = [];
+
+  const timeOptions: Intl.DateTimeFormatOptions = {
     month: "short",
     day: "numeric",
     hour: "numeric",
@@ -23,12 +45,12 @@ const CryptoChart = ({ id, coinName, currentPrice }) => {
     timeZone: "UTC",
   };
 
-  coinHistory?.data?.history?.forEach((coin) => {
-    return coinPrice.push(coin.price);
+  coinHistory?.data?.history?.forEach((coin: CoinTypes) => {
+    coinPrice.push(coin.price);
   });
 
-  coinHistory?.data?.history?.forEach((coin) => {
-    return coinTimestamp.push(
+  coinHistory?.data?.history?.forEach((coin: CoinTypes) => {
+    coinTimestamp.push(
       new Date(coin.timestamp * 1000).toLocaleString("en-US", timeOptions)
     );
   });
@@ -64,8 +86,6 @@ const CryptoChart = ({ id, coinName, currentPrice }) => {
       },
     },
   };
-
-  if (error) return <Error errorMsg={error?.data?.message} />;
 
   return (
     <>
