@@ -32,6 +32,7 @@
   <summary>Client</summary>
   <ul>
     <li><a href="https://react.dev/">React</a></li>
+    <li><a href="https://www.typescriptlang.org/">TypeScript</a></li>
     <li><a href="https://redux-toolkit.js.org/">Redux Toolkit</a></li>
     <li><a href="https://tailwindcss.com/">Tailwind CSS</a></li>
   </ul>
