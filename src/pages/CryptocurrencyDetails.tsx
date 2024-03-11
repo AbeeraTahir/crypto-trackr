@@ -47,13 +47,18 @@ const CryptocurrencyDetails = () => {
   const cryptoStats: CryptoStatsItemProps[] = [
     {
       title: "Price to USD",
-      value: `$ ${millify(Number(cryptoDetails?.price))}`,
+      value: `$ ${
+        cryptoDetails?.price && millify(Number(cryptoDetails?.price))
+      }`,
       icon: <AiOutlineDollar />,
     },
     { title: "Rank", value: cryptoDetails?.rank, icon: <AiOutlineTrophy /> },
     {
       title: "24h Volume",
-      value: `$ ${millify(Number(cryptoDetails?.["24hVolume"]))}`,
+      value: `$ ${
+        cryptoDetails?.["24hVolume"] &&
+        millify(Number(cryptoDetails?.["24hVolume"]))
+      }`,
       icon: <AiOutlineThunderbolt />,
     },
     {
@@ -103,9 +108,9 @@ const CryptocurrencyDetails = () => {
     },
   ];
 
-  if (isFetching) return <Loader />
+  if (isFetching) return <Loader />;
 
-  if (error) return <Error errorMsg={error?.data?.message} />
+  if (error) return <Error errorMsg={error?.data?.message} />;
 
   return (
     <section className="mt-[5rem] mb-[2.5rem] flex flex-col gap-5 px-6 md:px-36 py-12 items-center">
@@ -127,9 +132,9 @@ const CryptocurrencyDetails = () => {
         </h3>
         <div className="flex flex-col md:flex-row items-center md:gap-20 gap-8">
           <div className="flex flex-col w-full items-center gap-8">
-            {cryptoStats.slice(0, 5).map(({ icon, title, value }, index) => (
+            {cryptoStats.slice(0, 5).map(({ icon, title, value }) => (
               <CryptoStatsItem
-                key={index}
+                key={title}
                 icon={icon}
                 title={title}
                 value={value}
@@ -137,9 +142,9 @@ const CryptocurrencyDetails = () => {
             ))}
           </div>
           <div className="flex flex-col w-full items-center gap-8">
-            {cryptoStats.slice(5).map(({ icon, title, value }, index) => (
+            {cryptoStats.slice(5).map(({ icon, title, value }) => (
               <CryptoStatsItem
-                key={index}
+                key={title}
                 icon={icon}
                 title={title}
                 value={value}
@@ -164,9 +169,9 @@ const CryptocurrencyDetails = () => {
             {cryptoDetails?.name} Links
           </h3>
           <div className="flex flex-col gap-8 items-center">
-            {cryptoDetails.links?.map((link: any, index: number) => (
+            {cryptoDetails.links?.map((link: any) => (
               <div
-                key={index}
+                key={link.url}
                 className="w-full flex justify-between items-center px-3 pb-3 border-b text-[0.95rem]">
                 <h4 className="capitalize">{link.type}</h4>
                 <a

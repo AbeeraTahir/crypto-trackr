@@ -9,7 +9,7 @@ import { useEffect } from "react";
 Chart.register(CategoryScale);
 
 interface CryptoChartProps {
-  id: string;
+  id: string | undefined;
   coinName: string;
   currentPrice: number;
 }
