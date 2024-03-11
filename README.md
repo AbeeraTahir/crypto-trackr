@@ -85,7 +85,11 @@ Install this project with:
 
 ### Usage
 
-To run the project, execute the following command:
+To run the project:
+
+- Create a `.env` file in the root of the project.
+- Inside that `.env` file, create a variable named `VITE_API_KEY` and assign your RapidAPI key to it. Then create a variable named `VITE_API_HOST` and assign your RapidAPI host to it.
+- Run the following command to see the website:
 
 ```sh
   npm run dev
